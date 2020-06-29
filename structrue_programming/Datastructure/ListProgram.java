@@ -2,10 +2,12 @@ package Datastructure;
 
 import java.util.Scanner;
 
-public class Program {
+public class ListProgram {
 	public static void main(String[] args) {
-		Exam[] exams = new Exam[3];
-		int current = 0;
+		
+		ExamList list = new ExamList(); 
+		list.exams = new Exam[3];
+		list.current = 0;
 
 		int menu;
 		boolean keepLoop = true;
@@ -14,10 +16,11 @@ public class Program {
 			menu = inputMenu();
 			switch (menu) {
 			case 1:
-				inputList(exams, current);
+				inputList(list);
 				break;
 			case 2:
-				printList(exams, current);
+				printList(list);
+//				printList(list, 2);
 				break;
 			case 3:
 				keepLoop = false;
@@ -26,10 +29,18 @@ public class Program {
 		}
 	}
 
-	private static void printList(Exam[] exams, int size) {
+	private static void printList(ExamList list) {		
+		printList(list, list.current);
+	}
+	
+	private static void printList(ExamList list, int size) {
 		System.out.println("============================");
 		System.out.println("성적출력");
 		System.out.println("============================");
+		
+//		int size = list.current;
+		Exam[] exams = list.exams;
+		
 		for (int i = 0; i < size; i++) {
 			Exam exam = exams[i];
 			int kor = exam.kor;
@@ -52,7 +63,7 @@ public class Program {
 
 	}
 
-	private static void inputList(Exam[] exams, int current) {
+	private static void inputList(ExamList list) {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("============================");
@@ -89,9 +100,19 @@ public class Program {
 		exam.kor = kor;
 		exam.eng = eng;
 		exam.math = math;
-
-		exams[current] = exam;
-		current++;
+		
+		Exam[] exams = list.exams;
+		int size = list.current;
+		
+		if (exams.length == size) {
+			Exam[] temp = new Exam[size + 5];
+			for (int i = 0; i < size; i++) {
+				temp[i] = exams[i];
+			}
+			list.exams = temp;
+		}
+		list.exams[list.current] = exam;
+		list.current++;
 	}
 
 	private static int inputMenu() {
