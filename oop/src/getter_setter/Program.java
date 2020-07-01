@@ -1,4 +1,4 @@
-package method;
+package getter_setter;
 
 import java.util.Scanner;
 

@@ -1,11 +1,11 @@
-package method;
+package UI코드분리하기;
 
 import java.util.Scanner;
 
 public class Program {
 	public static void main(String[] args) {
 		
-		ExamList list = new ExamList(); 
+		ExamConsole console = new ExamConsole(); 
 	
 		
 		
@@ -17,12 +17,12 @@ public class Program {
 			switch (menu) {
 			case 1:
 //				ExamList.inputList(list);
-				list.inputList();
+				console.inputList();
 				break;
 			case 2:
 //				ExamList.printList(list);
 //				ExamList.printList(list, 2);
-				list.printList();
+				console.printList();
 				break;
 			case 3:
 				keepLoop = false;

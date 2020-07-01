@@ -1,39 +1,29 @@
-package method;
+package UI코드분리하기;
 
 import java.util.Scanner;
 
-public class ExamList {
-	private Exam[] exams;
-	private int current;
+public class ExamConsole {
+	
+	private ExamList list = new ExamList();
+	
+	public void printList() {
+		printList(list.size());
+	}
 
-	public ExamList() {
-		this(3);
-	}
-	
-	public ExamList(int size) {
-		exams = new Exam[size];
-		current = 0;
-	}
-	
-	public void printList() {		
-		printList(current);
-	}
-	
 	public void printList(int size) {
 		System.out.println("============================");
 		System.out.println("성적출력");
 		System.out.println("============================");
-		
-		Exam[] exams = this.exams;
-		
-		for (int i = 0; i < size; i++) {
-			Exam exam = exams[i];
-			int kor = exam.kor;
-			int eng = exam.eng;
-			int math = exam.math;
 
-			int total = kor + eng + math;
-			float avg = total / 3.0f;
+		for (int i = 0; i < size; i++) {
+			Exam exam = list.get(i);// this.exams[i];
+
+			int kor = exam.getKor();
+			int eng = exam.getEng();
+			int math = exam.getMath();
+
+			int total = exam.total();
+			float avg = exam.avg();
 
 			System.out.printf("국어: %3d\n", kor);
 			System.out.printf("영어: %3d\n", eng);
@@ -80,23 +70,11 @@ public class ExamList {
 		} while (math < 0 || math > 100);
 
 		System.out.println("============================");
-
-		Exam exam = new Exam();
-		exam.kor = kor;
-		exam.eng = eng;
-		exam.math = math;
+		Exam exam = new Exam(kor, eng, math);
 		
-		Exam[] exams = this.exams;
-		int size = this.current;
+		// ------------------add-------------------------
 		
-		if (exams.length == size) {
-			Exam[] temp = new Exam[size + 5];
-			for (int i = 0; i < size; i++) {
-				temp[i] = exams[i];
-			}
-			exams = temp;
-		}
-		exams[current] = exam;
-		current++;
+		list.add(exam);
 	}
+
 }
