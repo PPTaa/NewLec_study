@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ExamConsole {
 	
+	// Composition Has A (일체형)
 	private ExamList list = new ExamList();
 	
 	public void printList() {
