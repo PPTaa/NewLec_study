@@ -1,3 +1,0 @@
-module OOPJavaPjt {
-	requires examlib;
-}
