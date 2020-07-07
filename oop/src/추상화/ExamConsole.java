@@ -29,6 +29,7 @@ public abstract class ExamConsole {
 			System.out.printf("국어: %3d\n", kor);
 			System.out.printf("영어: %3d\n", eng);
 			System.out.printf("수학: %3d\n", math);
+			onPrint(exam);
 
 			System.out.printf("총점: %3d\n", total);
 			System.out.printf("평균: %6.3f\n", avg);
@@ -69,17 +70,22 @@ public abstract class ExamConsole {
 				System.out.println("성적은 0~100 범위만 입력홰주세요");
 			}
 		} while (math < 0 || math > 100);
+		
 
-		System.out.println("============================");
 //		Exam exam = new Exam(kor, eng, math);
 		Exam exam = makeExam();
 		exam.setKor(kor);
 		exam.setEng(eng);
 		exam.setMath(math);
-		// ------------------add-------------------------
+		onInput(exam);
+		System.out.println("============================");
 		
+		// ------------------add-------------------------
 		list.add(exam);
 	}
 
+	protected abstract void onPrint(Exam exam);
+	protected abstract void onInput(Exam exam);
 	protected abstract Exam makeExam();
+	
 }

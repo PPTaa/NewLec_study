@@ -17,12 +17,12 @@ public class Program {
 			switch (menu) {
 			case 1:
 //				ExamList.inputList(list);
-				console.inputList();
+				console.input();
 				break;
 			case 2:
 //				ExamList.printList(list);
 //				ExamList.printList(list, 2);
-				console.printList();
+				console.print();
 				break;
 			case 3:
 				keepLoop = false;

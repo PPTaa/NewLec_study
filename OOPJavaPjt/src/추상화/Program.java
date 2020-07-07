@@ -9,6 +9,7 @@ public class Program {
 		ExamConsole console = new MyExamConsole();
 		console.input();
 		console.print();
+		
 	}
 
 }
